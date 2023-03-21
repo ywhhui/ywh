@@ -1,0 +1,76 @@
+1.gson 序列化别名方法 @SeriealizedName  jsckjson 前端别名方法 @JsonProperty @JsonFieldId 不用fashion jackson 原因是bug多 gson没啥bug
+	
+2.一个项目全局指定一种json解析方式 配置方法： spring.mvc.converters.preferred-json-mapper=gson
+
+3.SSL certificate verification（SSL证书验证）：防止应用程序在发出请求时检查SSL证书的有效性； 当https的ca证书过期后 postman设置不校验证书  https的证书过期后 仍然可以连接
+
+4.springboot bean加载指定优先级 @Componentt @Service @DependsOn(value={"依赖的bean对象"}) 项目启动时候 二个bean实例化有先后顺序 用dependsOn注解指定加载顺序
+
+5.junit和idea版本适配问题 <scope>test</scope> 
+
+6.公共apollo的多namespace配置方法 相同key前覆盖后 Application.yml和Apollo存在相同key 以apollo为准  单例工厂模式synchronized实现  公共缓存大对象 公共静态实例 只初始化一次
+
+7.springboot 读取配置优先级  java -jar $args $app 优先级最高 其次jar包同级的config
+
+8.记录jenkins 推包远程仓库 下载包 部署重启服务
+
+9.生产上问题 前端客户端post 请求方式 content_type=application/json 但是传的formdata格式的数据 app_ba_sdk兼容httpRequest.getReader()  BATCH_ID=10100 转{BATCH_ID=10100} 转{"BATCH_ID":"10100"}
+		Object obj =JsonUtils.gson.fromJson(string,class) {BATCH_ID=10100}可以正常转对象  兼容非法传参
+10.redis zskipSet 对有序单向链表 加索引 提高时间复杂度0(logN) 空间换时间 hashMap
+
+11.恒生redis集群部署  
+
+12.查看当前用户 所有进程的pid 命令jps -l -m -q -v  JVM Process Status Tool  rm -rf *.log 删除 vim vi i编辑 u撤回 :wq保存退出 taskkill /f /pid xxxx
+	ls -a 查看隐藏文件 ls -la 查看文件夹里面的文件权限  grep 关键字 *conf 过滤目录里面 所有的含有关键字的conf后缀文件
+
+13.beanUtil.copyproperties 利用的是反射的原理 性能比较低 实体类里面加init方法来解决
+
+14.javac改eclipse 有缺陷 会报cannot be resolve
+ <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms1024m -Xmx1024m -XX:PermSize=2048m -XX:MaxPermSize=2048m -Xms1024m -Xmx1024m 
+ -XX:PermSize=126m -XX:MaxPermSize=258m -Xdebug -Dplay.debug=yes -Dplay.id= -Dapplication.path="${project_loc:com.shovesoft.sp2p}" 
+ -Djava.endorsed.dirs="D:\play-1.2.7/framework/endorsed" -javaagent:"D:\play-1.2.7/framework/play-1.2.7.jar""/>
+
+15.上面这个链接是我们发送http消息用的okhttp组件  目前我们只支持同步post方法  计划要支持  同步get   异步get  异步post 处理高并发性能问题 减少socket连接耗时
+
+16.调用visio 流程图
+	1. APP(H5) 调用      APP(H5)--->网关---》hq_center_common--->通达信行情TP--->通达信行情源
+	2. 内网调用       内网服务---》内网网关--》 hq_center_common--->通达信行情TP--->通达信行情源
+
+17.jasypt 对mysql进行加解密
+
+18. lombok失效原因 插件 版本 最终定位到是因为use compiler=javac(java compiler)  https://www.cnblogs.com/wulm/p/10908227.html
+-javaagent:D:\apache-maven-3.5.2\repository\org\projectlombok\lombok\1.18.20\lombok-1.18.20.jar
+<dependency>
+
+<groupId>com.github.ulisesbocchio</groupId>
+
+<artifactId>jasypt-spring-boot-starter</artifactId>
+
+<version>2.1.0</version>
+
+</dependency>
+
+
+rpm -ivh mysql-community-common-5.7.33-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.33-1.el7.x86_64.rpm 
+rpm -ivh mysql-community-client-5.7.33-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-5.7.33-1.el7.x86_64.rpm
+
+rpm -ivh mysql-community-common-5.7.37-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.37-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-5.7.37-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-5.7.37-1.el7.x86_64.rpm
+
+
+
+				<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			 <version>2.22.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+			 <version>2.22.2</version>
+		</dependency>
